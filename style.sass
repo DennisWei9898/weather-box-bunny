@@ -1,0 +1,440 @@
+$color_white: #f3f3f3
+$color_yellow: #FFD633
+$color_black: #222
+$color_blue_start: #19283D
+$color_blue_end: #1D678F
+$color_rain: #4DACFF
+$color_white_cloud: #f2f9fe
+$color_grey_cloud: #ccc
+$color_pink: pink
+$color_pink_end: #FF95CA
+
+*
+  position: relative
+  font-family: 'Hind Vadodara', sans-serif,"微軟正黑體 " 
+
+@mixin size($w,$h)
+  width: $w
+  height: $h
+
+html,body
+  width: 100%
+  height: 100%
+  margin: 0
+  padding: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: $color_black 
+  
+label
+  cursor: pointer
+    
+.daybox
+  width: 50%
+  max-width: 400px
+  background-color: $color_white
+  box-shadow: 0px 0px 20px rgba(black, 0.3)
+  border-radius: 5px
+  cursor: pointer
+  
+  &:hover
+    .bottom
+      height: 100px
+    .dayweather
+      top:0px
+      opacity: 1
+
+.temsvg
+  width: 100%
+  polyline
+    stroke: $color_white
+    stroke-width: 1px
+    fill: none
+    opacity: 0.2
+  text
+    fill: $color_white
+    transform: translateX(-10px) translateY(20px)
+    font-size: 12px
+    opacity: 0
+  circle
+    fill: $color_white
+    opacity: 0.2
+    
+.rain
+  +size(2px,10px)
+  position: absolute
+  left: 45px
+  bottom: 15px
+  animation: raindrop 1s infinite linear
+  background-color: $color_white
+  
+.rain2
+  left: 70px
+  bottom: 20px
+  animation-delay: -0.4s
+.rain3
+  left: 30px
+  bottom: 20px
+  animation-delay: -0.7s
+
+  
+@keyframes raindrop
+  0%
+    transform: translateY(0px)
+  100%
+    transform: translateY(50px)
+    opacity: 0
+
+.top
+  height: 330px
+  background: linear-gradient(20deg,$color_pink_end,$color_blue_end)
+  animation: daylight 20s infinite
+  border-radius: 5px 5px 0px 0px
+  
+  @keyframes daylight
+    0%
+      background-position: 100% 30%
+      background-size: 100% 100%
+    50%
+      background-size: 100% 300%
+    100%
+      background-position: 100% 100%
+      background-size: 100% 100%
+      
+    
+  .moon
+    +size(50px,50px)
+    border-radius: 100%
+    box-shadow: 15px -15px
+    position: absolute
+    left: 50px
+    top: 100px
+    animation: moonmove 20s infinite
+
+  @keyframes moonmove
+    0%
+      box-shadow: 15px -15px $color_yellow
+      transform: translateX(-15px) translateY(15px)
+    100%
+      box-shadow: -30px 30px $color_yellow
+      transform: translateX(30px) translateY(-30px)
+    
+    
+.rabbit
+  +size(50px,50px)
+  position: absolute
+  left: 300px
+  top: 10px
+  bottom: 100px
+  border-radius: 100%
+  background-color: none
+  box-shadow: 0px 0px 20px rgba(black, 0.2)
+  animation: jump 1s infinite linear
+  @keyframes jump
+    0%
+      top: 10px 
+    10%
+      top: -10px
+    20%
+      top: 10px
+    100%
+      top: 10px
+  
+  .ear
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%
+    display: block
+    +size(20px,60px)
+    position: absolute
+    background: linear-gradient(20deg,$color_white,pink)
+  .ear1
+    transform: rotate(-25deg)
+    left: 0px
+    top: -18px
+    animation: ear_R_shaking 1s infinite linear
+  .ear2
+    transform: rotate(25deg)
+    left: 30px
+    top: -18px
+    animation: ear_L_shaking 1s infinite linear
+  
+  @keyframes ear_R_shaking
+    0%
+      transform: rotate(-15deg)
+    20%
+      transform: rotate(-45deg)
+    40%
+      transform: rotate(-45deg)
+    60%
+      transform: rotate(-15deg)
+    100%
+      transform: rotate(-45deg)
+    
+  @keyframes ear_L_shaking
+    0%
+      transform: rotate(15deg)
+    20%
+      transform: rotate(45deg)
+    40%
+      transform: rotate(45deg)
+    60%
+      transform: rotate(15deg)
+    100%
+      transform: rotate(45deg)
+    
+  .face
+    +size(50px,50px)
+    position: absolute
+    border-radius: 100%
+    top: 0px
+    background-color: $color_white
+    box-shadow: 0px 0px 20px rgba(black, 0.3)
+  .eye
+    position: absolute
+    +size(10px,10px)
+    border-radius: 100%
+    background-color: pink
+    box-shadow: 0px 0px 20px rgba(black, 0.3)
+  .eye1
+    left: 30px
+    top: 10px
+  .eye2
+    left: 10px
+    top: 10px
+  .rbody
+    +size(60px,60px)
+    position: absolute
+    top: 30px
+    left: 10px
+    border-radius: 100%
+    background-color: $color_white
+  .rleg
+    +size(20px,15px)
+    position: absolute
+    top: 80px
+    left: 10px
+    border-radius: 100%
+    background: linear-gradient(20deg,$color_white,pink)
+  .leg1
+    left: 15px
+  .leg2
+    left: 40px
+  .ribbon
+    +size(120px,20px)
+    height:20px
+    top: 40px
+    left: -25px
+    animation: ribbon_roll 10s infinite
+    transform-origin: center
+    opacity: 0.5
+    @keyframes ribbon_roll
+      0%
+        transform: rotate(-15deg)
+        opacity: 0.5
+      50%
+        transform: rotate(15deg)
+        opacity: 0
+      100%
+        transform: rotate(-15deg)
+        opacity: 0.5
+    .oval1
+      +size(120px,40px)
+      border-radius: 100px/ 50px
+      overflow: hidden
+      transform: rotate(5deg)
+      position: absolute
+      .o1
+        +size(130px,20px)
+        background: linear-gradient(20deg,$color_white,pink)
+    .oval2
+      +size(60px,30px)
+      top: 7px
+      left: 45px
+      border-radius: 100px/ 40px
+      overflow: hidden
+      animation: rolling_R 10s infinite
+      transform-origin: 100% 50%
+      position: absolute
+      .o2
+        +size(130px,13px)
+        background: linear-gradient(20deg,$color_white,pink)
+        top: 0px
+    .oval3
+      +size(60px,40px)
+      top: -10px
+      left: 20px
+      border-radius: 50% 50%/ 30% 30%
+      overflow: hidden
+      transform-origin: 0% 50%
+      animation: rolling_L 10s infinite ease
+      position: absolute
+      .o3
+        +size(130px,15px)
+        background: linear-gradient(20deg,$color_white,pink)
+        top: 0px
+    .circle
+      +size(15px,15px)
+      border-radius: 100%
+      background: linear-gradient(20deg,$color_white,pink)
+      position: absolute
+    .c1
+      top: 5px
+      left: 0px
+      opacity: 0.6
+    .c2
+      top: 15px
+      left: 105px
+      transform: rotate(-15deg)
+
+    @keyframes rolling_L
+      0%
+        transform: rotate(-140deg)
+        
+      50%
+        transform: rotate(-225deg)
+        top: -20px
+        left: 0px
+      100%
+        transform: rotate(-140deg)
+        left: 20px
+    
+    @keyframes rolling_R
+      0%
+        transform: rotate(160deg)
+        
+      50%
+        transform: rotate(230deg)
+        top: -10px 
+      100%
+        transform: rotate(160deg)
+      
+    
+.cloud
+  +size(100px, 36px)
+  position: absolute
+  left: 200px
+  bottom: 50px
+  border-radius: 20px
+  animation: clouddrift 4s infinite
+  background-color: $color_white
+  box-shadow: 0px 0px 20px rgba(black, 0.3)
+
+
+  &:before,&:after
+    content:""
+    // border: solid 1px
+    background-color: $color_white
+    border-radius: 100%
+    display: block
+    +size(50px,50px)
+    position: absolute
+  &:before
+    left: 16px
+    top: -28px
+  &:after
+    left: 35px
+    top: -20px
+
+  @keyframes clouddrift
+    0%
+      transform: translateY(0px)
+    50%
+      transform: translateY(-10px)
+    100%
+      transform: translateY(0px)
+    
+.bottom
+  display: flex
+  justify-content: center
+  height: 10px
+  box-shadow: 0px 0px 20px rgba(black, 0.3)
+  border-radius: 0px 0px 5px 5px
+  overflow: hidden
+  transition-duration: 2s
+
+  .dayweather
+    display: inline-block
+    width: calc(100% / 7 - 5px)
+    text-align: center
+    opacity: 0
+    top: 20px
+    transition: 0.5s
+    h3
+      font-size: 8px
+      color: rgba($color_black, 0.6)
+      font-weight: 400
+    svg
+      width: 100%
+      height: 40px
+      max-width: 40px
+      .sun
+        fill: $color_yellow
+        stroke: rgba($color_yellow, 0.5)
+        stroke-width: 30px
+        stroke-dasharray: 5px
+      .rain
+        stroke: $color_rain
+      .cloud
+        fill: $color_grey_cloud
+  
+.dayweather:nth-child(1)
+  transition-delay:0.2s
+.dayweather:nth-child(2)
+  transition-delay:0.4s
+.dayweather:nth-child(3)
+  transition-delay:0.6s
+.dayweather:nth-child(4)
+  transition-delay:0.8s
+.dayweather:nth-child(5)
+  transition-delay:1.0s
+.dayweather:nth-child(6)
+  transition-delay:1.2s
+.dayweather:nth-child(7)
+  transition-delay:1.4s
+.text_area
+  display: inline-block
+  position: absolute
+  bottom: 25px
+  left: 25px
+  color: $color_white
+  
+  .temperature
+    font-size: 75px
+    line-height: 80px
+  .infos
+    font-size: 13px
+    opacity: 0.5
+
+.moon,.cloud
+  transition: 0.5s
+.temsvg
+  circle
+    transition: 0.5s
+  polyline
+    transition: 0.5s 0.3s   
+  text
+    transition: 0.5s 0.6s
+.rabbit
+  transition: 0.5s 0.6s
+
+#switch_night
+  display: none
+
+    
+#switch_night:checked+.top
+  .moon,.cloud
+    opacity: 0.2
+  .temsvg
+    circle,polyline,text
+      opacity: 1
+  .rabbit
+    animation: rabbit_fly 2s both
+    
+@keyframes rabbit_fly
+  0%
+    opacity: 1
+  100%
+    top: 90px
+    left: 40px
+    transform: scale(0.1)
+    opacity: 0
